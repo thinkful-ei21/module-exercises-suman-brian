@@ -37,7 +37,7 @@ const store = (function(){
 
   function findAndUpdateName(id,newName){
     try{
-      if(typeof(name) === undefined || name === '')
+      if(typeof(newName) === undefined || newName === '')
         throw new Error;
       const item = this.findById(id);
       item.name = newName;
@@ -51,6 +51,13 @@ const store = (function(){
     this.items.splice(this.items.indexOf(item),1);
   }
 
+  function toggleCheckedFilter(){
+    this.hideCheckedItems = !this.hideCheckedItems;
+  }
+
+  function setSearchTerm(searchTerms){
+    this.searchTerm = searchTerms[0];
+  }
   return {
     items,
     hideCheckedItems,
@@ -60,5 +67,7 @@ const store = (function(){
     findAndToggleChecked,
     findAndUpdateName,
     findAndDelete,
+    toggleCheckedFilter,
+    setSearchTerm,
   };
 }());
